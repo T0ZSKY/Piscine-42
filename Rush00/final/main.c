@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 13:51:57 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/18 22:37:11 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/20 08:29:30 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/20 12:56:06 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+extern void	rush(int a, int b);
 
-void	ft_ultimate_div_mode(int *a, int *b)
+int	main(void)
 {
-	int	t;
-
-	t = *a;
-	*a = *a / *b;
-	*b = t % *b;
+	rush(150, 150);
+	return (0);
 }

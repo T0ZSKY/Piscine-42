@@ -1,22 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
+/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 13:51:57 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/18 22:37:11 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/20 14:09:02 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/20 17:44:18 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_ultimate_div_mode(int *a, int *b)
+int	ft_str_is_alpha(char *str)
 {
-	int	t;
 
-	t = *a;
-	*a = *a / *b;
-	*b = t % *b;
+	int maj;
+	int min;
+	int i;
+
+	i = 0;
+
+	while(str[i] != '\0')
+	{
+		min = (str[i] >= 'a' && str[i] <= 'z');
+		maj = (str[i] >= 'A' && str[i] <= 'Z');
+
+		if(maj || min)
+		{
+			i++;
+		}
+		else
+		{
+			return (0);
+		}
+	}
+
+	return (1);
+
 }
+
+
+/*
+int main()
+{
+	printf("%d", ft_str_is_alpha("tEsT"));
+}
+*/

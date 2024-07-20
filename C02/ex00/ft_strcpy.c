@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 13:51:57 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/18 22:37:11 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/18 21:18:29 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/18 21:37:57 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_ultimate_div_mode(int *a, int *b)
+char	*ft_strcpy(char *dest, char *src)
 {
-	int	t;
+	int	i;
 
-	t = *a;
-	*a = *a / *b;
-	*b = t % *b;
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:24:42 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/18 16:49:20 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/18 18:47:38 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,19 @@
 
 void	ft_rev_int_tab(int *tab, int size)
 {
-	int temps;
+	int	temps;
+	int	i;
 
-	
-	int i;
 	i = 0;
-
 	while (i < size / 2)
-	{ 
+	{
 		temps = tab[i];
 		tab[i] = tab[size - 1 - i];
 		tab[size - 1 - i] = temps;
-		
-		i++;	
-		
-	}
-
-
-		
+		i++;
+	}	
 }
-
-int main()
+/*int main()
 {
         int tab[3];
         int size;
@@ -45,5 +37,4 @@ int main()
         tab[2] = 3;
         ft_rev_int_tab(tab, size);
 	printf("%d", tab[2]);
-}
-
+}*/

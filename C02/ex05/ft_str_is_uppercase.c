@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
+/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 13:51:57 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/18 22:37:11 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/20 18:06:36 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/20 18:15:40 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_ultimate_div_mode(int *a, int *b)
+int	ft_str_is_uppercase(char *str)
 {
-	int	t;
 
-	t = *a;
-	*a = *a / *b;
-	*b = t % *b;
 }

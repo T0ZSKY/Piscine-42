@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
+/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 13:51:57 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/18 22:37:11 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/20 17:24:31 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/20 17:43:20 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_ultimate_div_mode(int *a, int *b)
+int	ft_str_is_numeric(char *str)
 {
-	int	t;
+	int nombre;
+	int i;
 
-	t = *a;
-	*a = *a / *b;
-	*b = t % *b;
+	i = 0;
+	while(str[i])
+	{
+		nombre = (str[i] >= '0' && str[i] <= '9');
+
+		if(nombre)
+		{
+			i++;
+		}
+		else
+		{
+			return (0);
+		}
+	}
+
+	return(1);
 }
