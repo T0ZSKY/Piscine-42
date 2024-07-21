@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_strupcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 08:53:01 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/21 10:24:41 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/21 10:25:25 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/21 10:48:57 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_str_is_printable(char *str)
-{
-	int	print;
-	int	i;
 
-	i = 0;
-	while (str[i] != '\0')
+char	*ft_strupcase(char *str)
+{
+	int	i;
+	int	min;
+	int	maj;
+
+	while(str[i])
 	{
-		print = (str[i] >= 32 && str[i] <= 126);
-		if (print)
+		min = (str[i] >= 'a' && str[i] <= 'z' ); 
+		if(min)
 		{
-			i++;
-		}
-		else
-		{
-			return (0);
+			str[i] = str[i] - 32;	
 		}
 	}
-	return (1);
+	return (str);
 }
-/*
+
 #include <stdio.h>
-int main()
+int	main()
 {
-	printf("%d", ft_str_is_printable(""));
+	ft_strupcase("test");
 }
-*/
