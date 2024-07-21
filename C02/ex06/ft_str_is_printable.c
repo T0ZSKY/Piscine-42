@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 08:11:01 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/21 08:28:37 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/21 08:53:01 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/21 10:03:49 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int	ft_str_is_printable(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (i < n && src[i] != '\0')
+	while (str[i] != '\0')
 	{
-		dest[i] = src[i];
-		i++;
+		if(str[i] > 32 || str[i] < 126)
+		{
+			i++;
+		}
+		else
+		{
+			return (0);
+		}
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	return (1);
+}
+
+#include <stdio.h>
+int main()
+{
+	printf("%d", ft_str_is_printable("\t"));
 }
