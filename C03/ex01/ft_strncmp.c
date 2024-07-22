@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 10:25:25 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/21 12:31:45 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/22 10:05:49 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/22 10:46:06 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
 	int	i;
-	int	min;
+	unsigned int	a;
+	unsigned int	b;
 
-	i = 0;
-	while (str[i])
+	i =0;
+	while(s1[i] != '\0' && s2[i] != '\0' && i < n)
 	{
-		min = (str[i] >= 'a' && str[i] <= 'z' );
-		if (min)
+		a = s1[i];
+		b = s2[i];
+		if (a != b)
 		{
-			str[i] = str[i] - 32;
+			return (a - b);
 		}
 		i++;
 	}
-	return (str);
+	
+	return (0);
 }
 /*
-int main()
+#include <stdio.h>
+int     main()
 {
-	char	src[7] = "test";
-	ft_strupcase(src);
-	printf("%s", src);
-
+	unsigned int n = 4;
+        printf("%d", ft_strncmp("ateo","ateq", n));
 }
 */
+

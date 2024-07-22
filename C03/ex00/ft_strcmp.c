@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 10:25:25 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/21 12:31:45 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/21 14:18:32 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/22 11:08:34 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
-	int	min;
+	unsigned int	a;
+	unsigned int	b;
 
 	i = 0;
-	while (str[i])
+	while (s1[i] != 0 || s2[i] != 0)
 	{
-		min = (str[i] >= 'a' && str[i] <= 'z' );
-		if (min)
+		a = s1[i];
+		b = s2[i];
+		if (a != b)
 		{
-			str[i] = str[i] - 32;
+			return (a - b);
 		}
 		i++;
 	}
-	return (str);
+	return (0);
 }
-/*
-int main()
+#include <stdio.h>
+int	main()
 {
-	char	src[7] = "test";
-	ft_strupcase(src);
-	printf("%s", src);
-
+	printf("%d", ft_strcmp("Test1","OK"));
 }
-*/
+
+

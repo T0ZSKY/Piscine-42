@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 10:25:25 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/21 12:31:45 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/21 12:19:22 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/21 14:05:06 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-char	*ft_strupcase(char *str)
+char	*ft_strlowcase(char *str)
 {
 	int	i;
-	int	min;
+	int	maj;
 
 	i = 0;
 	while (str[i])
 	{
-		min = (str[i] >= 'a' && str[i] <= 'z' );
-		if (min)
+		maj = (str[i] >= 'A' && str[i] <= 'Z');
+		if (maj)
 		{
-			str[i] = str[i] - 32;
+			str[i] = str[i] + 32;
 		}
 		i++;
 	}
@@ -30,9 +29,9 @@ char	*ft_strupcase(char *str)
 /*
 int main()
 {
-	char	src[7] = "test";
-	ft_strupcase(src);
-	printf("%s", src);
+        char    src[7] = "TEST";
+        ft_strlowcase(src);
+        printf("%s", src);
 
 }
 */

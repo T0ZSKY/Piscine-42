@@ -6,11 +6,9 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 08:11:01 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/21 08:28:37 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/21 15:13:37 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
@@ -29,4 +27,9 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+int	main()
+{
+	ft_strncpy("", "test", 5);
 }
