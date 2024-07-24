@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:46:18 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/23 17:36:52 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/24 11:42:48 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -14,6 +14,9 @@
 void	ft_putnbr(int nb)
 {
 	char	c;
+	
+	if(nb <= 0)
+		write(1, "-", 1);
 
 	if (nb > 9)
 	{
@@ -22,9 +25,7 @@ void	ft_putnbr(int nb)
 	c = '0' + nb % 10;
 	write(1, &c, 1);
 }
-/*
 int	main()
 {
-	ft_putnbr(0);
+	ft_putnbr(-4564);
 }
-*/

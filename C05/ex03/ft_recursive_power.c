@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_recursive_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 08:42:29 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/24 16:30:13 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/24 10:27:33 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/24 16:32:21 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+int	ft_recursive_power(int nb, int power)
 {
-	int	i;
-	int	factorial;
-
-	if (nb == 0)
+	if (power == 0)
 		return (1);
-	i = 1;
-	factorial = 1;
-	while (i <= nb)
-	{
-		factorial = factorial * i;
-		i++;
-	}
-	return (factorial);
+	else
+		return (nb * ft_recursive_power(nb, power - 1));
 }
 /*
 #include <stdio.h>
 int	main()
 {
-	printf("%d", ft_iterative_factorial(0));
+	printf("%d", ft_recursive_power(5, 5));
 }
 */
