@@ -12,18 +12,21 @@
 
 int	ft_iterative_power(int nb, int power)
 {
-	int	i;
 	int	t;
 
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
 	t = 1;
-	i = 1;
-	while (i <= power)
+	while (power > 0)
 	{
-		t = t * nb;
-		i++;
+		t *= nb;
+		power--;
 	}
 	return (t);
 }
+
 /*
 #include <stdio.h>
 int main()
