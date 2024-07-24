@@ -6,22 +6,25 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:46:18 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/23 12:21:35 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/23 17:36:52 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
+
 void	ft_putnbr(int nb)
 {
+	char	c;
+
 	if (nb > 9)
 	{
 		ft_putnbr(nb / 10);
 	}
-	char c;
 	c = '0' + nb % 10;
 	write(1, &c, 1);
 }
-
+/*
 int	main()
 {
 	ft_putnbr(0);
 }
+*/
