@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:42:29 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/24 16:47:25 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/25 08:21:34 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	ft_iterative_factorial(int nb)
 	}
 	return (factorial);
 }
+/*
 #include <stdio.h>
 int	main()
 {
 	printf("%d", ft_iterative_factorial(0));
 }
+*/

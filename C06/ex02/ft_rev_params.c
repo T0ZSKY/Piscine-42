@@ -1,43 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 15:23:03 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/25 08:33:11 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/25 11:16:47 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/25 11:35:49 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
+#include <unistd.h>
+
+void	ft_putstr(char *str)
+{
+	int	j;
+
+	j = 0;
+	while(str[j])
+	{
+		write(1, &str[j], 1);
+		j++;
+	}
+}
+
+int	main(int argc, char *argv[])
 {
 	int	i;
+	i = argc - 1;
 
-	i = 0;
-	while (i <= nb / 2)
+	while(i > 0)
 	{
-		if (i * i == nb)
-		{
-			return (i);
-		}
-		i++;
+		ft_putstr(argv[i]);
+		write(1, "\n", 1);
+		i--;
 	}
 	return (0);
-}
-/*
-#include <stdio.h>
 
-int ft_sqrt(int nb);
 
-int	main(void)
-{
-	printf("10:%d\n", ft_sqrt(100));
-	printf("6:%d\n", ft_sqrt(36));
-	printf("0:%d\n", ft_sqrt(37));
-	printf("100:%d\n", ft_sqrt(10000));
-	printf("0:%d\n", ft_sqrt(10001));
-	printf("2000:%d\n", ft_sqrt(4000000));
-	printf("0:%d\n", ft_sqrt(-36));
 }
-*/
