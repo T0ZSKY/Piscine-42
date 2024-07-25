@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:23:03 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/24 16:34:15 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/24 16:45:27 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,19 @@ int	ft_sqrt(int nb)
 		}
 		i++;
 	}
+	return (0);
 }
-/*
 #include <stdio.h>
-int main()
+
+int ft_sqrt(int nb);
+
+int	main(void)
 {
-	printf("%d", ft_sqrt(144));
+	printf("10:%d\n", ft_sqrt(100));
+	printf("6:%d\n", ft_sqrt(36));
+	printf("0:%d\n", ft_sqrt(37));
+	printf("100:%d\n", ft_sqrt(10000));
+	printf("0:%d\n", ft_sqrt(10001));
+	printf("2000:%d\n", ft_sqrt(4000000));
+	printf("0:%d\n", ft_sqrt(-36));
 }
-*/
