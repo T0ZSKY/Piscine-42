@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tomlimon <tomlimon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 10:45:15 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/26 10:46:18 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/26 11:46:55 by tomlimon          #+#    #+#             */
+/*   Updated: 2024/07/26 11:47:00 by tomlimon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swap(int *a, int *b)
-{
-	int temp;
-	temp = *a;
-	*a = *b;;
-	*b = temp;
-}
