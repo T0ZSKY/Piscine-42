@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 09:50:30 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/27 11:47:34 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/27 15:06:05 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	ft_check(char *str)
 
 int main(int argc, char *argv[])
 {
+
+//gestion des erreurs
     if (argc != 2)
     {
         write(1, "Error", 5);
@@ -61,7 +63,7 @@ int main(int argc, char *argv[])
 	write(1, "ERROR", 5);
 	return (1);
     }
-
+//gestion du tableau
     char tab[6][6] = {
         {' ', '1', '1', '1', '1', ' '},
         {'1', '0', '0', '0', '0', '1'},
@@ -95,6 +97,10 @@ int main(int argc, char *argv[])
         g++;
     }
 
+
+
+
+//imprime le tableau
     int i = 0;
     while (i < 6)
     {
