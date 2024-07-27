@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 09:50:30 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/27 15:36:44 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/27 16:04:13 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
         }
         g++;
     }
-
+//condition pour remplir le centre du jeu
     int z = 0;
 
     while (z < 6)
@@ -108,9 +108,25 @@ int main(int argc, char *argv[])
             tab[3][z] = '3';
             tab[4][z] = '4';
         }
+	else if (tab[5][z] == '4')
+	{
+		tab[1][z] = '4';
+           	tab[2][z] = '3';
+            	tab[3][z] = '2';
+            	tab[4][z] = '1';
+
+	}
+	else if(tab[0][z] == '1')
+	{
+		tab[1][z] = '4';
+	}
+	else if(tab[5][z] == '1')
+	{
+		tab[4][z] = '4';
+	}
         z++;
     }
-
+//fin condition pour le centre du jeu
     write(1, "\n", 1);
 
     // Imprime le tableau
