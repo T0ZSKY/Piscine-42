@@ -11,7 +11,7 @@ int ft_strlen(char *src) {
 int ft_check(char *str) {
     int i = 0;
     while (str[i]) {
-        if (!(str[i] >= '1' && str[i] <= '4')) {
+        if (!(str[i] >= '1' && str[i] <= '4') && !(str[i] == 32)) {
             return (1);
         }
         i++;
@@ -33,6 +33,7 @@ void print_tab(char tab[6][6]) {
     }
 }
 
+// Fonction pour remplir le centre du tableau en fonction des contraintes
 void fill_center(char tab[6][6]) {
     for (int i = 1; i < 5; i++) {
         // Remplissage des colonnes en fonction des contraintes haut/bas
@@ -50,6 +51,14 @@ void fill_center(char tab[6][6]) {
             tab[1][i] = '4';
         } else if (tab[5][i] == '1') {
             tab[4][i] = '4';
+        } else if (tab[0][i] == '2' && tab[5][i] != '3') {
+            tab[1][i] = '3';
+        } else if (tab[5][i] == '2' && tab[0][i] != '3') {
+            tab[4][i] = '3';
+        } else if (tab[0][i] == '3' && tab[5][i] != '2') {
+            tab[1][i] = '2';
+        } else if (tab[5][i] == '3' && tab[0][i] != '2') {
+            tab[4][i] = '2';
         }
 
         // Remplissage des lignes en fonction des contraintes gauche/droite
@@ -67,39 +76,47 @@ void fill_center(char tab[6][6]) {
             tab[i][1] = '4';
         } else if (tab[i][5] == '1') {
             tab[i][4] = '4';
+        } else if (tab[i][0] == '2' && tab[i][5] != '3') {
+            tab[i][1] = '3';
+        } else if (tab[i][5] == '2' && tab[i][0] != '3') {
+            tab[i][4] = '3';
+        } else if (tab[i][0] == '3' && tab[i][5] != '2') {
+            tab[i][1] = '2';
+        } else if (tab[i][5] == '3' && tab[i][0] != '2') {
+            tab[i][4] = '2';
         }
     }
 }
 
+
 int main(int argc, char *argv[]) {
     // Gestion des erreurs
     if (argc != 2) {
-        write(1, "Error\n", 6);
+	write(1, "Error3", 6);
         return 1;
     }
-
-    if (ft_strlen(argv[1]) != 16) {
-        write(1, "Error\n", 6);
-        return 1;
+    if (ft_strlen(argv[1]) != 31) {
+        write(1, "Error2", 6);
+        return ft_strlen(argv[1]);
     }
 
     if (ft_check(argv[1]) == 1) {
-        write(1, "Error\n", 6);
+	write(1, "Error1", 6);
         return 1;
     }
 
-    // Initialisation du tableau avec les contraintes
     char tab[6][6] = {
-        {' ', argv[1][0], argv[1][1], argv[1][2], argv[1][3], ' '},
-        {argv[1][4], '0', '0', '0', '0', argv[1][5]},
-        {argv[1][6], '0', '0', '0', '0', argv[1][7]},
-        {argv[1][8], '0', '0', '0', '0', argv[1][9]},
-        {argv[1][10], '0', '0', '0', '0', argv[1][11]},
-        {' ', argv[1][12], argv[1][13], argv[1][14], argv[1][15], ' '}
+        {' ', argv[1][0], argv[1][2], argv[1][4], argv[1][6], ' '},
+        {argv[1][8], '0', '0', '0', '0', argv[1][16]},
+        {argv[1][10], '0', '0', '0', '0', argv[1][18]},
+        {argv[1][12], '0', '0', '0', '0', argv[1][20]},
+        {argv[1][14], '0', '0', '0', '0', argv[1][22]},
+        {' ', argv[1][24], argv[1][26], argv[1][28], argv[1][30], ' '}
     };
 
     // Remplissage des centres du tableau
     fill_center(tab);
+
 
     // Imprimer le tableau
     print_tab(tab);
