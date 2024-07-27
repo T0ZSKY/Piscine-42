@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 09:50:30 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/27 15:06:05 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/27 15:36:44 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,29 @@ int main(int argc, char *argv[])
     }
 
 
+	int	t;
+	int	z;
+	t = 0;
+	z = 0;
 
+	while(t < 6)
+	{
+		z = 0;
+		while(z < 6)
+		{
+			if(tab[0][z] == '4')
+			{
+				tab[t + 1][z] = '1';
+				tab[t + 2][z] = '2';
+				tab[t + 3][z] = '3';
+				tab[t + 4][z] = '4';
+			}
+			z++;
+		}
+
+		t++;
+	}
+	write(1, "\n", 1);
 
 //imprime le tableau
     int i = 0;
