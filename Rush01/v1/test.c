@@ -43,8 +43,7 @@ int	ft_check(char *str)
 
 int main(int argc, char *argv[])
 {
-
-//gestion des erreurs
+    // Gestion des erreurs
     if (argc != 2)
     {
         write(1, "Error", 5);
@@ -52,18 +51,19 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    if(ft_strlen(argv[1]) != 16)
+    if (ft_strlen(argv[1]) != 16)
     {
-	write(1, "ERROR", 5);
-	return (1);
+        write(1, "ERROR", 5);
+        return (1);
     }
 
-    if(ft_check(argv[1]) == 1)
+    if (ft_check(argv[1]) == 1)
     {
-	write(1, "ERROR", 5);
-	return (1);
+        write(1, "ERROR", 5);
+        return (1);
     }
-//gestion du tableau
+
+    // Gestion du tableau
     char tab[6][6] = {
         {' ', '1', '1', '1', '1', ' '},
         {'1', '0', '0', '0', '0', '1'},
@@ -97,32 +97,23 @@ int main(int argc, char *argv[])
         g++;
     }
 
+    int z = 0;
 
-	int	t;
-	int	z;
-	t = 0;
-	z = 0;
+    while (z < 6)
+    {
+        if (tab[0][z] == '4')
+        {
+            tab[1][z] = '1';
+            tab[2][z] = '2';
+            tab[3][z] = '3';
+            tab[4][z] = '4';
+        }
+        z++;
+    }
 
-	while(t < 6)
-	{
-		z = 0;
-		while(z < 6)
-		{
-			if(tab[0][z] == '4')
-			{
-				tab[t + 1][z] = '1';
-				tab[t + 2][z] = '2';
-				tab[t + 3][z] = '3';
-				tab[t + 4][z] = '4';
-			}
-			z++;
-		}
+    write(1, "\n", 1);
 
-		t++;
-	}
-	write(1, "\n", 1);
-
-//imprime le tableau
+    // Imprime le tableau
     int i = 0;
     while (i < 6)
     {
@@ -139,5 +130,3 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
-

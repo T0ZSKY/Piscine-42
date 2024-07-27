@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/tomlimon/Documents/Piscine-42/rush01/v1/test'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _ft_strlen, symObjAddr: 0x0, symBinAddr: 0x100003B6C, symSize: 0x4C }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _ft_strlen, symObjAddr: 0x0, symBinAddr: 0x100003B6C, symSize: 0x4C }
+  - { offsetInCU: 0x77, offset: 0x77, size: 0x8, addend: 0x0, symName: _ft_check, symObjAddr: 0x4C, symBinAddr: 0x100003BB8, symSize: 0x98 }
+  - { offsetInCU: 0xAD, offset: 0xAD, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0xE4, symBinAddr: 0x100003C50, symSize: 0x2F0 }
+...
