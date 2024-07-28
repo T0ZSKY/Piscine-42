@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomlimon <tomlimon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/28 09:12:35 by tomlimon          #+#    #+#             */
-/*   Updated: 2024/07/28 10:27:20 by tomlimon         ###   ########.fr       */
+/*   Created: 2024/07/28 10:35:23 by tomlimon          #+#    #+#             */
+/*   Updated: 2024/07/28 10:35:23 by tomlimon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "rush01.h"
 #include <unistd.h>
 
-int main(int argc, char *argv[])
-{
-    char tab[6][6];
-
-    if (check_args(argc, argv) == 0)
-    {
-        write(1, "Error\n", 6);
-        return (1);
+int check_args(int argc, char *argv[]) {
+    if (argc != 2) {
+        return (0);
     }
-    
-    init_tab(tab, argv[1]);
-
-    if (!solve_puzzle(tab, 0))
-    {
-        write(1, "Error\n", 6);
-        return (1);
+    if (ft_strlen(argv[1]) != 31) {
+        return (0);
     }
-
-    print_solution(tab);
-    return (0);
+    if (ft_check(argv[1]) == 1) {
+        return (0);
+    }
+    return (1);
 }

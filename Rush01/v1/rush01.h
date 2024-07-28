@@ -6,7 +6,7 @@
 /*   By: tomlimon <tomlimon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 10:09:57 by tomlimon          #+#    #+#             */
-/*   Updated: 2024/07/28 10:10:00 by tomlimon         ###   ########.fr       */
+/*   Updated: 2024/07/28 10:29:43 by tomlimon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ int  check_col_down(char tab[6][6], int col);
 int  check_row_left(char tab[6][6], int row);
 int  check_row_right(char tab[6][6], int row);
 int  solve_puzzle(char tab[6][6], int pos);
+int  check_args(int argc, char *argv[]);
+void init_tab(char tab[6][6], char *arg);
 
 #endif
