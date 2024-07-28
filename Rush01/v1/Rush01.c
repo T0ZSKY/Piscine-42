@@ -1,22 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Rush01.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tomlimon <tomlimon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/28 09:58:22 by tomlimon          #+#    #+#             */
-/*   Updated: 2024/07/28 10:03:42 by tomlimon         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "rush01.h"
 #include <unistd.h>
+#include "rush01.h"
 
 int ft_strlen(char *src)
 {
-    int o;
-    o = 0;
+    int o = 0;
     while (src[o])
     {
         o++;
@@ -26,8 +13,7 @@ int ft_strlen(char *src)
 
 int ft_check(char *str)
 {
-    int i;
-    i = 0;
+    int i = 0;
     while (str[i])
     {
         if (!(str[i] >= '1' && str[i] <= '4') && !(str[i] == 32))
@@ -41,12 +27,10 @@ int ft_check(char *str)
 
 void print_solution(char tab[6][6])
 {
-    int i;
-    i = 1;
+    int i = 1;
     while (i < 5)
     {
-        int j;
-        j = 1;
+        int j = 1;
         while (j < 5)
         {
             write(1, &tab[i][j], 1);
@@ -63,8 +47,7 @@ void print_solution(char tab[6][6])
 
 int is_valid(char tab[6][6], int row, int col, char num)
 {
-    int i;
-    i = 1;
+    int i = 1;
     while (i < 5)
     {
         if (tab[row][i] == num || tab[i][col] == num)
@@ -76,108 +59,12 @@ int is_valid(char tab[6][6], int row, int col, char num)
     return (1);
 }
 
-int check_visibility(char tab[6][6])
-{
-    int i;
-    int max;
-    int visible;
-    int j;
-
-    i = 1;
-    while (i < 5)
-    {
-        max = '0';
-        visible = 0;
-        j = 1;
-        while (j < 5)
-        {
-            if (tab[j][i] > max)
-            {
-                max = tab[j][i];
-                visible++;
-            }
-            j++;
-        }
-        if (tab[0][i] != '0' && visible != tab[0][i] - '0')
-        {
-            return (0);
-        }
-        i++;
-    }
-    i = 1;
-    while (i < 5)
-    {
-        max = '0';
-        visible = 0;
-        j = 4;
-        while (j > 0)
-        {
-            if (tab[j][i] > max)
-            {
-                max = tab[j][i];
-                visible++;
-            }
-            j--;
-        }
-        if (tab[5][i] != '0' && visible != tab[5][i] - '0')
-        {
-            return (0);
-        }
-        i++;
-    }
-    i = 1;
-    while (i < 5)
-    {
-        max = '0';
-        visible = 0;
-        j = 1;
-        while (j < 5)
-        {
-            if (tab[i][j] > max)
-            {
-                max = tab[i][j];
-                visible++;
-            }
-            j++;
-        }
-        if (tab[i][0] != '0' && visible != tab[i][0] - '0')
-        {
-            return (0);
-        }
-        i++;
-    }
-    i = 1;
-    while (i < 5)
-    {
-        max = '0';
-        visible = 0;
-        j = 4;
-        while (j > 0)
-        {
-            if (tab[i][j] > max)
-            {
-                max = tab[i][j];
-                visible++;
-            }
-            j--;
-        }
-        if (tab[i][5] != '0' && visible != tab[i][5] - '0')
-        {
-            return (0);
-        }
-        i++;
-    }
-    return (1);
-}
-
 int solve_puzzle(char tab[6][6], int pos)
 {
-    int row ;
-    int col;
+    int row = pos / 4 + 1;
+    int col = pos % 4 + 1;
     char num;
 
-    row = pos / 4 + 1;
-    col = pos % 4 + 1;
     if (pos == 16)
     {
         return (check_visibility(tab));
