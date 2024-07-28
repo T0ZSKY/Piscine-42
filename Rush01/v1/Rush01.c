@@ -1,10 +1,22 @@
-// Rush01.c
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Rush01.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomlimon <tomlimon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/28 09:58:22 by tomlimon          #+#    #+#             */
+/*   Updated: 2024/07/28 10:03:42 by tomlimon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rush01.h"
 #include <unistd.h>
 
 int ft_strlen(char *src)
 {
-    int o = 0;
+    int o;
+    o = 0;
     while (src[o])
     {
         o++;
@@ -14,7 +26,8 @@ int ft_strlen(char *src)
 
 int ft_check(char *str)
 {
-    int i = 0;
+    int i;
+    i = 0;
     while (str[i])
     {
         if (!(str[i] >= '1' && str[i] <= '4') && !(str[i] == 32))
@@ -28,10 +41,12 @@ int ft_check(char *str)
 
 void print_solution(char tab[6][6])
 {
-    int i = 1;
+    int i;
+    i = 1;
     while (i < 5)
     {
-        int j = 1;
+        int j;
+        j = 1;
         while (j < 5)
         {
             write(1, &tab[i][j], 1);
@@ -48,7 +63,8 @@ void print_solution(char tab[6][6])
 
 int is_valid(char tab[6][6], int row, int col, char num)
 {
-    int i = 1;
+    int i;
+    i = 1;
     while (i < 5)
     {
         if (tab[row][i] == num || tab[i][col] == num)
@@ -156,10 +172,12 @@ int check_visibility(char tab[6][6])
 
 int solve_puzzle(char tab[6][6], int pos)
 {
-    int row = pos / 4 + 1;
-    int col = pos % 4 + 1;
+    int row ;
+    int col;
     char num;
 
+    row = pos / 4 + 1;
+    col = pos % 4 + 1;
     if (pos == 16)
     {
         return (check_visibility(tab));
