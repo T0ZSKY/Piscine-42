@@ -19,13 +19,15 @@ int ft_check(char *str) {
     return (0);
 }
 
-void print_tab(char tab[6][6]) {
-    int i = 0;
-    while (i < 6) {
-        int j = 0;
-        while (j < 6) {
+void print_solution(char tab[6][6]) {
+    int i = 1;
+    while (i < 5) {
+        int j = 1;
+        while (j < 5) {
             write(1, &tab[i][j], 1);
-            write(1, " ", 1);
+            if (j < 4) {
+                write(1, " ", 1);
+            }
             j++;
         }
         write(1, "\n", 1);
@@ -33,75 +35,135 @@ void print_tab(char tab[6][6]) {
     }
 }
 
-// Fonction pour remplir le centre du tableau en fonction des contraintes
-void fill_center(char tab[6][6]) {
-    for (int i = 1; i < 5; i++) {
-        // Remplissage des colonnes en fonction des contraintes haut/bas
-        if (tab[0][i] == '4') {
-            tab[1][i] = '1';
-            tab[2][i] = '2';
-            tab[3][i] = '3';
-            tab[4][i] = '4';
-        } else if (tab[5][i] == '4') {
-            tab[1][i] = '4';
-            tab[2][i] = '3';
-            tab[3][i] = '2';
-            tab[4][i] = '1';
-        } else if (tab[0][i] == '1') {
-            tab[1][i] = '4';
-        } else if (tab[5][i] == '1') {
-            tab[4][i] = '4';
-        } else if (tab[0][i] == '2' && tab[5][i] != '3') {
-            tab[1][i] = '3';
-        } else if (tab[5][i] == '2' && tab[0][i] != '3') {
-            tab[4][i] = '3';
-        } else if (tab[0][i] == '3' && tab[5][i] != '2') {
-            tab[1][i] = '2';
-        } else if (tab[5][i] == '3' && tab[0][i] != '2') {
-            tab[4][i] = '2';
-        }
-
-        // Remplissage des lignes en fonction des contraintes gauche/droite
-        if (tab[i][0] == '4') {
-            tab[i][1] = '1';
-            tab[i][2] = '2';
-            tab[i][3] = '3';
-            tab[i][4] = '4';
-        } else if (tab[i][5] == '4') {
-            tab[i][1] = '4';
-            tab[i][2] = '3';
-            tab[i][3] = '2';
-            tab[i][4] = '1';
-        } else if (tab[i][0] == '1') {
-            tab[i][1] = '4';
-        } else if (tab[i][5] == '1') {
-            tab[i][4] = '4';
-        } else if (tab[i][0] == '2' && tab[i][5] != '3') {
-            tab[i][1] = '3';
-        } else if (tab[i][5] == '2' && tab[i][0] != '3') {
-            tab[i][4] = '3';
-        } else if (tab[i][0] == '3' && tab[i][5] != '2') {
-            tab[i][1] = '2';
-        } else if (tab[i][5] == '3' && tab[i][0] != '2') {
-            tab[i][4] = '2';
-        }
+int is_valid(char tab[6][6], int row, int col, char num) {
+    int i = 1;
+    while (i < 5) {
+        if (tab[row][i] == num || tab[i][col] == num)
+            return 0;
+        i++;
     }
+    return 1;
 }
 
+int check_visibility(char tab[6][6], int pos) {
+    int i;
+    int max;
+    int visible;
+
+
+    i = 1;
+    while (i < 5) {
+        max = '0';
+        visible = 0;
+        int j = 1;
+        while (j < 5) {
+            if (tab[j][i] > max) {
+                max = tab[j][i];
+                visible++;
+            }
+            j++;
+        }
+        if (tab[0][i] != '0' && visible != tab[0][i] - '0') {
+            return (0);
+        }
+        i++;
+    }
+
+
+    i = 1;
+    while (i < 5) {
+        max = '0';
+        visible = 0;
+        int j = 4;
+        while (j > 0) {
+            if (tab[j][i] > max) {
+                max = tab[j][i];
+                visible++;
+            }
+            j--;
+        }
+        if (tab[5][i] != '0' && visible != tab[5][i] - '0') {
+            return (0);
+        }
+        i++;
+    }
+
+
+    i = 1;
+    while (i < 5) {
+        max = '0';
+        visible = 0;
+        int j = 1;
+        while (j < 5) {
+            if (tab[i][j] > max) {
+                max = tab[i][j];
+                visible++;
+            }
+            j++;
+        }
+        if (tab[i][0] != '0' && visible != tab[i][0] - '0') {
+            return (0);
+        }
+        i++;
+    }
+
+
+    i = 1;
+    while (i < 5) {
+        max = '0';
+        visible = 0;
+        int j = 4;
+        while (j > 0) {
+            if (tab[i][j] > max) {
+                max = tab[i][j];
+                visible++;
+            }
+            j--;
+        }
+        if (tab[i][5] != '0' && visible != tab[i][5] - '0') {
+            return (0);
+        }
+        i++;
+    }
+
+    return (1);
+}
+
+int solve_puzzle(char tab[6][6], int pos) {
+    int row = pos / 4 + 1;
+    int col = pos % 4 + 1;
+
+    if (pos == 16)
+        return check_visibility(tab, pos);
+    
+    if (tab[row][col] != '0')
+        return solve_puzzle(tab, pos + 1);
+
+    char num = '1';
+    while (num <= '4') {
+        if (is_valid(tab, row, col, num)) {
+            tab[row][col] = num;
+            if (solve_puzzle(tab, pos + 1))
+                return 1;
+            tab[row][col] = '0';
+        }
+        num++;
+    }
+    return 0;
+}
 
 int main(int argc, char *argv[]) {
-    // Gestion des erreurs
     if (argc != 2) {
-	write(1, "Error3", 6);
+        write(1, "Error\n", 6);
         return 1;
     }
     if (ft_strlen(argv[1]) != 31) {
-        write(1, "Error2", 6);
+        write(1, "Error\n", 6);
         return ft_strlen(argv[1]);
     }
 
     if (ft_check(argv[1]) == 1) {
-	write(1, "Error1", 6);
+        write(1, "Error\n", 6);
         return 1;
     }
 
@@ -114,12 +176,11 @@ int main(int argc, char *argv[]) {
         {' ', argv[1][24], argv[1][26], argv[1][28], argv[1][30], ' '}
     };
 
-    // Remplissage des centres du tableau
-    fill_center(tab);
+    if (!solve_puzzle(tab, 0)) {
+        write(1, "Error\n", 6);
+        return 1;
+    }
 
-
-    // Imprimer le tableau
-    print_tab(tab);
-
+    print_solution(tab);
     return 0;
 }
