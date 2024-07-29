@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 08:45:38 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/29 09:30:50 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/29 11:54:47 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -26,7 +26,6 @@ int	ft_strlen(char *src)
 char	*ft_strdup(char *src)
 {
 	int		i;
-	int		src_len;
 	char	*dest;
 
 	i = 0;

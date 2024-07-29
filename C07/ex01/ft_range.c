@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 16:54:28 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/29 13:11:35 by tolimon          ###   ########.fr       */
+/*   Created: 2024/07/29 10:15:26 by tolimon           #+#    #+#             */
+/*   Updated: 2024/07/29 11:58:52 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *str, char *to_find)
-{
-	int	i;
-	int	j;
+#include <stdlib.h>
+#include <unistd.h>
 
-	i = 0;
-	if (to_find[0] == '\0')
-		return (str);
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] == to_find[0])
-		{
-			j = 0;
-			while (str[i] == to_find[j])
-			{
-				i++;
-				j++;
-			}
-			i = i - j;
-			if (to_find[j] == '\0')
-				return (str + i);
-		}
-		i++;
-	}
-	return (0);
+int *ft_range(int min, int max)
+{
+    int *tab;
+    int i;
+
+    if (min >= max) 
+        return (NULL);
+
+    tab = malloc(sizeof(int) * (max - min));
+
+    i = 0;
+    while (min < max)
+    {
+        tab[i] = min;
+	min ++;
+	i++;
+    }
+
+    return tab;
 }
