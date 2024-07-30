@@ -6,10 +6,10 @@
 /*   By: tomlimon <tomlimon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:23:23 by tomlimon          #+#    #+#             */
-/*   Updated: 2024/07/30 09:34:12 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/07/30 09:42:09 by tomlimon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 #include <stdlib.h>
 
 char	*ft_strcopy(char *dest, char *src)
@@ -28,14 +28,14 @@ char	*ft_strcopy(char *dest, char *src)
 
 int	ft_strlen(char *src)
 {
-	int	o;
+	int	len;
 
-	o = 0;
-	while (src[o])
+	len = 0;
+	while (src[len])
 	{
-		o++;
+		len++;
 	}
-	return (o);
+	return (len);
 }
 
 int	ft_total_len(int size, char **strs, char *sep)
@@ -74,22 +74,35 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	i = 0;
 	while (i < size)
 	{
-		int	len;
-		len = ft_strlen(strs[i]);
-		ft_strcopy(result + position, strs[i]);
-		position = position + len;
+		position = ft_copy_str(result, strs[i], position);
 		if (i < size - 1)
 		{
-			int	sep_len;
-			sep_len = ft_strlen(sep);
-			ft_strcopy(result + position, sep);
-			position = position + sep_len;
+			position = ft_copy_sep(result, sep, position);
 		}
 		i++;
 	}
 	result[position] = '\0';
 	return (result);
 }
+
+int	ft_copy_str(char *result, char *str, int position)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	ft_strcopy(result + position, str);
+	return (position + len);
+}
+
+int	ft_copy_sep(char *result, char *sep, int position)
+{
+	int	sep_len;
+
+	sep_len = ft_strlen(sep);
+	ft_strcopy(result + position, sep);
+	return (position + sep_len);
+}
+
 /*
 int	main()
 {
