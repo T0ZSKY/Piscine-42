@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomlimon <tomlimon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 17:38:16 by tomlimon          #+#    #+#             */
-/*   Updated: 2024/07/31 17:52:22 by tomlimon         ###   ########.fr       */
+/*   Created: 2024/07/31 18:47:12 by tomlimon          #+#    #+#             */
+/*   Updated: 2024/07/31 20:55:56 by tomlimon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 int	ft_ultimate_range(int **range, int min, int max)
 {
+	int	size;
 	int	i;
 
-	i = 0;
 	if (min >= max)
 	{
-		range = NULL;
+		*range = NULL;
 		return (0);
 	}
-	*range = malloc(sizeof(int) * (max - min));
-	while(min != max)
+	size = max - min;
+	*range = malloc(sizeof(int) * size);
+	if (*range == NULL)
+	{
+		return (-1);
+	}
+	i = 0;
+	while (min < max)
 	{
 		(*range)[i] = min;
 		min++;
 		i++;
 	}
-	if (range == NULL)
-	{
-		return (-1);
-	}
-	return (i);
+	return (size);
 }
