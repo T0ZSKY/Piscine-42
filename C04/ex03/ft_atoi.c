@@ -17,7 +17,7 @@ int	ft_atoi(char *str)
 	int	j;
 	int	result;
 
-	j = 1;
+	
 	result = 0;
 	i = 0;
 	ft_whitespace(&i, str);
