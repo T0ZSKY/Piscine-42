@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 08:40:40 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/31 08:41:33 by tolimon          ###   ########.fr       */
+/*   Created: 2024/08/05 10:22:44 by tolimon           #+#    #+#             */
+/*   Updated: 2024/08/05 10:24:10 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+char	*ft_strcpy(char *dest, char *src)
+{
+	int	i;
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
-
-#endif
+	i = 0;
+	while(src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return dest;
+}

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 08:40:40 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/31 08:41:33 by tolimon          ###   ########.fr       */
+/*   Created: 2024/08/05 10:24:38 by tolimon           #+#    #+#             */
+/*   Updated: 2024/08/05 10:26:24 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+char	*ft_strncpy(char *dest char *src, unsigned int n)
+{
+	int	i;
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
-
-#endif
+	i = 0;
+	while(src[i] && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+}

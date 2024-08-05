@@ -6,8 +6,16 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:31:31 by tolimon           #+#    #+#             */
-/*   Updated: 2024/08/01 10:31:34 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/08/05 09:44:04 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FT_POINT_H
+# define FT_POINT_H
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}t_point;
+#endif

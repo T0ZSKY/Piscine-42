@@ -6,7 +6,7 @@
 /*   By: tolimon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:33:57 by tolimon           #+#    #+#             */
-/*   Updated: 2024/07/31 16:07:12 by tolimon          ###   ########.fr       */
+/*   Updated: 2024/08/05 09:32:17 by tolimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include <unistd.h>
 
-#define ABS(Value)		(Value < 0 ) * (- Value) + (Value >= 0) * (Value)
+# define ABS(Value)		(Value < 0 ) * (- Value) + (Value >= 0) * (Value)
 
 #endif
