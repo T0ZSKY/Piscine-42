@@ -1,11 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>  // Pour strlen
-
-#define SIZE 20  // Taille de la grille
 
 // Définition des types booléens
 typedef enum { false, true } bool;
+
+#define SIZE 20  // Taille de la grille
+
+// Fonction personnalisée pour calculer la longueur d'une chaîne
+size_t my_strlen(const char *str) {
+    size_t length = 0;
+    while (*str != '\0') {
+        length++;
+        str++;
+    }
+    return length;
+}
 
 // Affiche la grille
 void printGrid(char grid[SIZE][SIZE]) {
@@ -121,20 +130,19 @@ bool readGridFromFile(const char *filename, char grid[SIZE][SIZE]) {
         if (fgets(buffer, sizeof(buffer), file) == NULL) {
             break; // Stop if no more lines are available
         }
-        size_t len = strlen(buffer);
+        size_t len = my_strlen(buffer);
         if (len > SIZE) len = SIZE;
         int j = 0;
         while (j < len) {
             grid[i][j] = buffer[j];
             j++;
         }
-        grid[i][len] = '\0';  // Assurez-vous que la chaîne est bien terminée
+        // Remplir le reste de la ligne avec des '.'
+        while (j < SIZE) {
+            grid[i][j] = '.';
+            j++;
+        }
         i++;
-    }
-
-    // Vérifiez s'il y a encore des lignes dans le fichier
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
-        // Gestion des lignes supplémentaires si nécessaire
     }
 
     fclose(file);
