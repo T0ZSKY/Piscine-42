@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>  // Ajouter cette ligne pour utiliser strlen
+#include <string.h>  // Pour strlen
 
-#define SIZE 20  // Changer la taille si nécessaire
+#define SIZE 20  // Taille de la grille
 
 // Définition des types booléens
 typedef enum { false, true } bool;
@@ -71,8 +71,8 @@ void removeSquare(char grid[SIZE][SIZE], int row, int col, int size) {
 bool solveBSQ(char grid[SIZE][SIZE], int *bestSize, int *bestRow, int *bestCol) {
     bool found = false;
     int maxSize = 0;
-    int row = 0;
 
+    int row = 0;
     while (row < SIZE) {
         int col = 0;
         while (col < SIZE) {
@@ -118,18 +118,23 @@ bool readGridFromFile(const char *filename, char grid[SIZE][SIZE]) {
 
     int i = 0;
     while (i < SIZE) {
-        if (fgets(grid[i], SIZE + 2, file) == NULL) {
-            fclose(file);
-            return false;
+        if (fgets(buffer, sizeof(buffer), file) == NULL) {
+            break; // Stop if no more lines are available
         }
-        // Remplacer le saut de ligne par '\0' si la ligne est trop longue
-        size_t len = strlen(grid[i]);
-        if (len < SIZE) {
-            grid[i][len] = '\0';  // Terminer la chaîne correctement
-        } else {
-            grid[i][SIZE - 1] = '\0';  // Assurez-vous que la chaîne est bien terminée
+        size_t len = strlen(buffer);
+        if (len > SIZE) len = SIZE;
+        int j = 0;
+        while (j < len) {
+            grid[i][j] = buffer[j];
+            j++;
         }
+        grid[i][len] = '\0';  // Assurez-vous que la chaîne est bien terminée
         i++;
+    }
+
+    // Vérifiez s'il y a encore des lignes dans le fichier
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        // Gestion des lignes supplémentaires si nécessaire
     }
 
     fclose(file);
@@ -138,13 +143,14 @@ bool readGridFromFile(const char *filename, char grid[SIZE][SIZE]) {
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        return 1;  // Erreur d'utilisation, rien n'est affiché
+        fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);
+        return 1;  // Erreur d'utilisation
     }
 
     char grid[SIZE][SIZE];
     
     if (!readGridFromFile(argv[1], grid)) {
-        return 1;  // Erreur de lecture, rien n'est affiché
+        return 1;  // Erreur de lecture
     }
 
     int bestSize = 0;
