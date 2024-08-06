@@ -4,7 +4,7 @@
 // Définition des types booléens
 typedef enum { false, true } bool;
 
-#define SIZE 20  // Taille de la grille
+#define SIZE 100  // Taille de la grille
 
 // Fonction personnalisée pour calculer la longueur d'une chaîne
 size_t my_strlen(const char *str) {
