@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Définition des types booléens
+//def bool
 typedef enum { false, true } bool;
 
-#define SIZE 100  // Taille de la grille
+#define SIZE 100  // taille de la map
 
-// Fonction personnalisée pour calculer la longueur d'une chaîne
+//strlen
 size_t my_strlen(const char *str) {
     size_t length = 0;
     while (*str != '\0') {
@@ -16,7 +16,7 @@ size_t my_strlen(const char *str) {
     return length;
 }
 
-// Affiche la grille
+// affichage map
 void printGrid(char grid[SIZE][SIZE]) {
     int i = 0;
     while (i < SIZE) {
@@ -30,7 +30,7 @@ void printGrid(char grid[SIZE][SIZE]) {
     }
 }
 
-// Vérifie si on peut placer un carré
+// Vérifie pour place
 bool canPlace(char grid[SIZE][SIZE], int row, int col, int size) {
     if (row + size > SIZE || col + size > SIZE) {
         return false;
@@ -76,7 +76,7 @@ void removeSquare(char grid[SIZE][SIZE], int row, int col, int size) {
     }
 }
 
-// Backtracking pour résoudre le problème du plus grand carré
+// Backtracking pour résoudre
 bool solveBSQ(char grid[SIZE][SIZE], int *bestSize, int *bestRow, int *bestCol) {
     bool found = false;
     int maxSize = 0;
@@ -97,7 +97,7 @@ bool solveBSQ(char grid[SIZE][SIZE], int *bestSize, int *bestRow, int *bestCol) 
                             found = true;
                         }
                     } else {
-                        break; // Stop checking larger tailles si la taille actuelle ne peut pas tenir
+                        break; 
                     }
                     size++;
                 }
@@ -152,7 +152,7 @@ bool readGridFromFile(const char *filename, char grid[SIZE][SIZE]) {
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);
-        return 1;  // Erreur d'utilisation
+        return 1;  // Erreur ouverture
     }
 
     char grid[SIZE][SIZE];
@@ -169,7 +169,6 @@ int main(int argc, char *argv[]) {
         placeSquare(grid, bestRow, bestCol, bestSize);
     }
 
-    // Afficher uniquement la grille après le placement du carré
     printGrid(grid);
 
     return 0;
