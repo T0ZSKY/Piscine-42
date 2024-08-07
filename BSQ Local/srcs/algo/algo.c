@@ -37,23 +37,21 @@ bool readGridFromFile(const char *filename, char ***grid, int *size) {
         return false;
     }
 
-    int i = 0;
-    while (i < *size) {
+    for (int i = 0; i < *size; i++) {
         (*grid)[i] = (char *)malloc((*size) * sizeof(char));
         if ((*grid)[i] == NULL) {
             write(2, "Memory allocation failed\n", 26);
             close(fd);
             return false;
         }
-        i++;
     }
 
     char buffer[BUFFER_SIZE];
     int row = 0;
     int col = 0;
-    while (read(fd, buffer, sizeof(buffer) - 1) > 0) {
-        int j = 0;
-        while (j < sizeof(buffer) - 1) {
+    ssize_t bytesRead;
+    while ((bytesRead = read(fd, buffer, sizeof(buffer))) > 0) {
+        for (ssize_t j = 0; j < bytesRead; j++) {
             if (buffer[j] == '\n') {
                 row++;
                 col = 0;
@@ -61,8 +59,8 @@ bool readGridFromFile(const char *filename, char ***grid, int *size) {
             } else {
                 (*grid)[row][col++] = buffer[j];
             }
-            j++;
         }
+        if (row >= *size) break; // Sortir si la grille est entièrement remplie
     }
 
     close(fd);
@@ -71,11 +69,9 @@ bool readGridFromFile(const char *filename, char ***grid, int *size) {
 
 // Affiche la grille
 void printGrid(char **grid, int size) {
-    int i = 0;
-    while (i < size) {
+    for (int i = 0; i < size; i++) {
         write(1, grid[i], size);
         write(1, "\n", 1);
-        i++;
     }
 }
 
@@ -113,11 +109,11 @@ void placeSquare(char **grid, int row, int col, int squareSize, char fillChar) {
 }
 
 // Résolution par backtracking pour trouver le plus grand carré
-bool solveBSQ(char **grid, int size, int *bestSize, int *bestRow, int *bestCol, char emptyChar, char fillChar) {
+bool solveBSQ(char **grid, int size, int *bestSize, int *bestRow, int *bestCol, char emptyChar) {
     bool found = false;
     int maxSize = 0;
-    int row = 0;
 
+    int row = 0;
     while (row < size) {
         int col = 0;
         while (col < size) {
@@ -151,13 +147,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int i = 1;
-    while (i < argc) {
+    for (int i = 1; i < argc; i++) {
         char **grid;
         int size;
         if (!readGridFromFile(argv[i], &grid, &size)) {
             write(2, "Error reading file\n", 20);
-            i++;
             continue;
         }
 
@@ -165,7 +159,7 @@ int main(int argc, char *argv[]) {
         int bestRow = 0;
         int bestCol = 0;
 
-        if (solveBSQ(grid, size, &bestSize, &bestRow, &bestCol, '.', 'x')) {
+        if (solveBSQ(grid, size, &bestSize, &bestRow, &bestCol, '.')) {
             char result[100];
             int len = snprintf(result, sizeof(result), "Best square size: %d at (%d, %d)\n", bestSize, bestRow, bestCol);
             write(1, result, len);
@@ -176,14 +170,10 @@ int main(int argc, char *argv[]) {
 
         printGrid(grid, size);
 
-        int j = 0;
-        while (j < size) {
+        for (int j = 0; j < size; j++) {
             free(grid[j]);
-            j++;
         }
         free(grid);
-
-        i++;
     }
 
     return 0;
