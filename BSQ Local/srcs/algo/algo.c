@@ -1,28 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//def bool
+// def des bool
 typedef enum { false, true } bool;
 
-#define SIZE 100  // taille de la map
-
-//strlen
-size_t my_strlen(const char *str) {
-    size_t length = 0;
-    while (*str != '\0') {
-        length++;
-        str++;
-    }
-    return length;
+// taille de la map
+int readGridSize(FILE *file) {
+    int size;
+    fscanf(file, "%d", &size);
+    return size;
 }
 
-// affichage map
-void printGrid(char grid[SIZE][SIZE]) {
+// lecture
+bool readGridFromFile(const char *filename, char ***grid, int *size) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        perror("Error opening file");
+        return false;
+    }
+
+    *size = readGridSize(file);
+    *grid = (char **)malloc((*size) * sizeof(char *));
     int i = 0;
-    while (i < SIZE) {
+    while (i < *size) {
+        (*grid)[i] = (char *)malloc((*size) * sizeof(char));
+        i++;
+    }
+
+    int row = 0;
+    while (row < *size) {
+        int col = 0;
+        while (col < *size) {
+            fscanf(file, " %c", &((*grid)[row][col]));
+            col++;
+        }
+        row++;
+    }
+
+    fclose(file);
+    return true;
+}
+
+// affiche map
+void printGrid(char **grid, int size) {
+    int i = 0;
+    while (i < size) {
         int j = 0;
-        while (j < SIZE) {
-            printf("%c ", grid[i][j]);
+        while (j < size) {
+            printf("%c", grid[i][j]);
             j++;
         }
         printf("\n");
@@ -30,146 +55,110 @@ void printGrid(char grid[SIZE][SIZE]) {
     }
 }
 
-// Vérifie pour place
-bool canPlace(char grid[SIZE][SIZE], int row, int col, int size) {
-    if (row + size > SIZE || col + size > SIZE) {
+// verif si on peux placer
+bool canPlace(char **grid, int row, int col, int squareSize, int gridSize, char emptyChar) {
+    if (row + squareSize > gridSize || col + squareSize > gridSize) {
         return false;
     }
 
-    int i = row;
-    while (i < row + size) {
-        int j = col;
-        while (j < col + size) {
-            if (grid[i][j] != '.') {
+    int r = row;
+    while (r < row + squareSize) {
+        int c = col;
+        while (c < col + squareSize) {
+            if (grid[r][c] != emptyChar) {
                 return false;
             }
-            j++;
+            c++;
         }
-        i++;
+        r++;
     }
     return true;
 }
 
-// Place un carré
-void placeSquare(char grid[SIZE][SIZE], int row, int col, int size) {
-    int i = row;
-    while (i < row + size) {
-        int j = col;
-        while (j < col + size) {
-            grid[i][j] = 'x';
-            j++;
+void placeSquare(char **grid, int row, int col, int squareSize, char fillChar) {
+    int r = row;
+    while (r < row + squareSize) {
+        int c = col;
+        while (c < col + squareSize) {
+            grid[r][c] = fillChar;
+            c++;
         }
-        i++;
+        r++;
     }
 }
 
-// Supprime un carré
-void removeSquare(char grid[SIZE][SIZE], int row, int col, int size) {
-    int i = row;
-    while (i < row + size) {
-        int j = col;
-        while (j < col + size) {
-            grid[i][j] = '.';
-            j++;
-        }
-        i++;
-    }
-}
-
-// Backtracking pour résoudre
-bool solveBSQ(char grid[SIZE][SIZE], int *bestSize, int *bestRow, int *bestCol) {
+// backtracking resolution
+bool solveBSQ(char **grid, int size, int *bestSize, int *bestRow, int *bestCol, char emptyChar, char fillChar) {
     bool found = false;
     int maxSize = 0;
 
     int row = 0;
-    while (row < SIZE) {
+    while (row < size) {
         int col = 0;
-        while (col < SIZE) {
-            if (grid[row][col] == '.') {
-                int size = 1;
-                while (size <= SIZE) {
-                    if (canPlace(grid, row, col, size)) {
-                        if (size > maxSize) {
-                            maxSize = size;
-                            *bestSize = size;
+        while (col < size) {
+            if (grid[row][col] == emptyChar) {
+                int squareSize = 1;
+                while (squareSize <= size) {
+                    if (canPlace(grid, row, col, squareSize, size, emptyChar)) {
+                        if (squareSize > maxSize) {
+                            maxSize = squareSize;
+                            *bestSize = squareSize;
                             *bestRow = row;
                             *bestCol = col;
                             found = true;
                         }
                     } else {
-                        break; 
+                        break;
                     }
-                    size++;
+                    squareSize++;
                 }
             }
             col++;
         }
         row++;
     }
-    
+
     return found;
 }
 
-// Lire la carte depuis le fichier
-bool readGridFromFile(const char *filename, char grid[SIZE][SIZE]) {
-    FILE *file = fopen(filename, "r");
-    if (file == NULL) {
-        perror("Error opening file");
-        return false;
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <map_file> [<map_file> ...]\n", argv[0]);
+        return 1;
     }
 
-    // Ignorer la première ligne
-    char buffer[SIZE + 2];
-    if (fgets(buffer, sizeof(buffer), file) == NULL) {
-        fclose(file);
-        return false;
-    }
-
-    int i = 0;
-    while (i < SIZE) {
-        if (fgets(buffer, sizeof(buffer), file) == NULL) {
-            break; // Stop if no more lines are available
+    int i = 1;
+    while (i < argc) {
+        char **grid;
+        int size;
+        if (!readGridFromFile(argv[i], &grid, &size)) {
+            fprintf(stderr, "Error reading file %s\n", argv[i]);
+            i++;
+            continue;
         }
-        size_t len = my_strlen(buffer);
-        if (len > SIZE) len = SIZE;
+
+        int bestSize = 0;
+        int bestRow = 0;
+        int bestCol = 0;
+
+        if (solveBSQ(grid, size, &bestSize, &bestRow, &bestCol, '.', 'x')) {
+            printf("Best square size: %d at (%d, %d)\n", bestSize, bestRow, bestCol);
+            placeSquare(grid, bestRow, bestCol, bestSize, 'x');
+        } else {
+            printf("No square found.\n");
+        }
+
+        printGrid(grid, size);
+
         int j = 0;
-        while (j < len) {
-            grid[i][j] = buffer[j];
+        while (j < size) {
+            free(grid[j]);
             j++;
         }
-        // Remplir le reste de la ligne avec des '.'
-        while (j < SIZE) {
-            grid[i][j] = '.';
-            j++;
-        }
+        free(grid);
+
         i++;
     }
-
-    fclose(file);
-    return true;
-}
-
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);
-        return 1;  // Erreur ouverture
-    }
-
-    char grid[SIZE][SIZE];
-    
-    if (!readGridFromFile(argv[1], grid)) {
-        return 1;  // Erreur de lecture
-    }
-
-    int bestSize = 0;
-    int bestRow = 0;
-    int bestCol = 0;
-
-    if (solveBSQ(grid, &bestSize, &bestRow, &bestCol)) {
-        placeSquare(grid, bestRow, bestCol, bestSize);
-    }
-
-    printGrid(grid);
 
     return 0;
 }
