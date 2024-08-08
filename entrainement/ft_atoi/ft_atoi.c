@@ -1,5 +1,6 @@
 
-int ft_atoi(char *src)
+
+int ft_atoi(char *nb)
 {
 	int	i;
 	int sign;
@@ -9,23 +10,22 @@ int ft_atoi(char *src)
 	sign = 1;
 	result = 0;
 
-	while (src[i] == 32 || (src[i] >= 9 && src[i] <= 13))
+
+	while (nb[i] == 32 || (nb[i] >= 9 && nb[i] <= 13))
 	{
 		i++;
 	}
 
-	if (src[i] == '-' || src[i] == '+')
+	while (nb[i] == '-' || nb[i] == '+')
 	{
-		if (src[i] == '-')
-		{
-			sign *= -1;
-		}
+		if (nb[i] == '-')
+			sign = sign * -1;
 		i++;
 	}
 
-	while (src[i] >= '0' && src[i] <= '9')
+	while(nb[i] >= '0' && nb[i] <= '9')
 	{
-		result = result * 10 + (src[i] - '0');
+		result = result * 10 + (nb[i] - '0');
 		i++;
 	}
 
@@ -33,18 +33,7 @@ int ft_atoi(char *src)
 
 }
 #include <stdio.h>
-
-
-int main() {
-    char str1[] = "   -1234abc";
-    char str2[] = "5678";
-    char str3[] = "+42";
-
-    printf("%d\n", ft_atoi(str1)); // Affiche -1234
-    printf("%d\n", ft_atoi(str2)); // Affiche 5678
-    printf("%d\n", ft_atoi(str3)); // Affiche 42
-
-    return 0;
+int main()
+{
+	printf("%d", ft_atoi("53"));
 }
-
-
