@@ -1,20 +1,70 @@
-🌊 Piscine 42 - Mon Parcours
+────────────────────────────────────────────────────────── 
 
-Bienvenue dans mon dépôt GitHub dédié à mon parcours à la piscine 42 ! Ici, vous trouverez les projets et exercices sur lesquels j’ai travaillé, allant jusqu’à l’exercice C08. Chaque fichier représente des heures de réflexion, de code, de tests, et surtout d’apprentissage.
+                                                             42 Piscine
+                       
+────────────────────────────────────────────────────────── 
+```
+   _____ ________   __________.__              .__               
+  /  |  |\_____  \  \______   \__| ______ ____ |__| ____   ____  
+ /   |  |_/  ____/   |     ___/  |/  ___// ___\|  |/    \_/ __ \ 
+/    ^   /       \   |    |   |  |\___ \\  \___|  |   |  \  ___/ 
+\____   |\_______ \  |____|   |__/____  >\___  >__|___|  /\___  >
+     |__|        \/                   \/     \/        \/     \/ 
+```
+──────────────────────────────────────────────────────────
 
-📂 Contenu du Dépôt
+                                                             INFO
 
-	•	C00 à C08 : Exercices en C couvrant les bases du langage, la manipulation de chaînes, les tableaux, la gestion de la mémoire avec malloc, et bien plus encore.
-	•	Exercices Bonus : Quelques projets supplémentaires que j’ai réalisés pour approfondir certaines notions.
+──────────────────────────────────────────────────────────
 
-⚠️ Avertissement Important
+**Title**: 42 Piscine  
+**Commits**: 102  
+**Author**: tomlimon  
+**Date**: August 2024  
+**Description**: My First 42 Pool
 
-Ne copiez pas mon code sans le comprendre.
+──────────────────────────────────────────────────────────
 
-La piscine est un défi personnel, et copier du code sans comprendre son fonctionnement vous fera plus de mal que de bien. Le but est d’apprendre, de se tromper, puis de progresser. Utilisez ce dépôt pour vous inspirer, mais assurez-vous de toujours comprendre chaque ligne avant de l’implémenter dans vos propres projets.
+                                                             DETAILS
 
-💡 3 Conseils pour Réussir la Piscine
+──────────────────────────────────────────────────────────
 
-	1.	Posez des questions, mais cherchez d’abord : Ne pas comprendre une notion est normal, mais essayez d’abord de chercher une solution par vous-même avant de demander de l’aide. Cela renforce l’apprentissage.
-	2.	Faites attention à la norme : Respectez scrupuleusement la norme 42. Même si votre code fonctionne, il sera refusé s’il ne respecte pas les règles de style imposées.
-	3.	Travaillez en équipe : La piscine peut être intense et solitaire, mais n’hésitez pas à collaborer, échanger des idées, et vous entraider avec d’autres candidats. Cela rendra l’expérience plus enrichissante.
+**File Size**       : 648 KB  
+**Format**          : .zip  
+**Platform**        : All 
+**Requirements**    : None
+
+──────────────────────────────────────────────────────────
+
+                                                             ASCII ART
+
+──────────────────────────────────────────────────────────
+
+
+                       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                    ~                         ~
+                 ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~
+               ~           ______________           ~
+              ~           |              |           ~
+             ~             |   POOL      |            ~
+             ~             |              |            ~
+              ~            |______________|           ~
+                ~  ~  ~  ~                 ~  ~  ~  ~
+                       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+               
+               ~ Stay Awesome, Keep Coding, and Enjoy ~
+
+──────────────────────────────────────────────────────────
+
+                                                             CREDITS
+
+──────────────────────────────────────────────────────────
+
+- **Mails**: tomlimon1508@gmail.com  
+- **Github**: T0ZSKY  
+
+──────────────────────────────────────────────────────────
+
+★ Thank you for reading! ★ 
+
+──────────────────────────────────────────────────────────
